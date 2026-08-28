@@ -187,39 +187,44 @@ export default function ZodiacRing() {
       })}
 
       {/* Major Lines */}
-      {majorLabels.map((deg) => {
-        const rad = ((deg - 90) * Math.PI) / 180;
+{/* Major Lines */}
+{/* Major Lines */}
+{majorLabels.map((deg) => {
+  const rad = ((deg - 90) * Math.PI) / 180;
 
-        const x2 = center + Math.cos(rad) * outer;
-        const y2 = center + Math.sin(rad) * outer;
+  const x2 = center + Math.cos(rad) * outer;
+  const y2 = center + Math.sin(rad) * outer;
 
-        const tx = center + Math.cos(rad) * 318;
-        const ty = center + Math.sin(rad) * 318;
+  // Same radius for every label
+  const labelRadius = 325;
 
-        return (
-          <g key={deg}>
-            <line
-              x1={center}
-              y1={center}
-              x2={x2}
-              y2={y2}
-              stroke="#1f3556"
-            />
+  const tx = center + Math.cos(rad) * labelRadius;
+  const ty = center + Math.sin(rad) * labelRadius;
 
-            <text
-              x={tx}
-              y={ty}
-              fill="#00d4ff"
-              fontSize="13"
-              fontWeight="bold"
-              textAnchor="middle"
-              dominantBaseline="middle"
-            >
-              {deg}°
-            </text>
-          </g>
-        );
-      })}
+  return (
+    <g key={deg}>
+      <line
+        x1={center}
+        y1={center}
+        x2={x2}
+        y2={y2}
+        stroke="#1f3556"
+      />
+
+      <text
+        x={tx}
+        y={ty}
+        fill="#00d4ff"
+        fontSize="12"
+        fontWeight="bold"
+        textAnchor="middle"
+        dominantBaseline="middle"
+      >
+        {deg.toFixed(deg % 1 === 0 ? 0 : 2).replace(/\.00$/, "")}°
+      </text>
+    </g>
+  );
+})}
     </>
   );
 }

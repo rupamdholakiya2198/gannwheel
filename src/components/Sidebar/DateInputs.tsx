@@ -1,3 +1,5 @@
+import { equinoxDates } from "../../constants/equinoxDates";
+
 type DateInputsProps = {
   equinox: string;
   current: string;
@@ -29,12 +31,25 @@ export default function DateInputs({
             📅 Equinox Date
           </label>
 
-          <input
+          {/* <input
             type="date"
             value={equinox}
             onChange={(e) => onEquinoxChange(e.target.value)}
             className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none transition duration-300 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30"
-          />
+          /> */}
+          <select
+  value={equinox}
+  onChange={(e) => onEquinoxChange(e.target.value)}
+  className="w-full rounded-lg border border-slate-700 bg-slate-800 p-3 text-white outline-none transition focus:border-cyan-500"
+>
+  <option value="">Select Equinox Date</option>
+
+  {equinoxDates.map((date) => (
+    <option key={date} value={date}>
+      {date.split("-").reverse().join("-")}
+    </option>
+  ))}
+</select>
         </div>
 
         {/* Current Date */}
